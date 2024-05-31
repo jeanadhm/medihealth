@@ -4,16 +4,15 @@ import axios from "axios";
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
-import Carousel from "views/carrousel";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const history = useHistory();
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -24,17 +23,14 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      // Envoi de la requête au backend pour vérifier les informations de connexion
-      const response = await axios.post("http://localhost:5000/login", {
-        username,
+      const response = await axios.post("http://127.0.0.1:8000/api/patient/login/", {
+        email,
         mdp: password,
       });
       
-      // Si les informations de connexion sont correctes, rediriger vers /mademande
-      history.push("/mademande");
+      history.push("/login");
     } catch (error) {
-      // Si une erreur se produit, afficher le message d'erreur
-      setError("Nom d'utilisateur ou mot de passe incorrect");
+      setError("Adresse e-mail ou mot de passe incorrect");
     }
   };
 
@@ -73,18 +69,18 @@ export default function Login() {
                       <div className="relative w-full mb-3 mt-8">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                          htmlFor="username"
+                          htmlFor="email"
                         >
-                          Nom d'utilisateur
+                          Adresse e-mail
                         </label>
                         <input
-                          type="text"
-                          id="username"
-                          name="username"
-                          value={username}
-                          onChange={handleUsernameChange}
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={email}
+                          onChange={handleEmailChange}
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          placeholder="Nom d'utilisateur"
+                          placeholder="Adresse e-mail"
                         />
                       </div>
 

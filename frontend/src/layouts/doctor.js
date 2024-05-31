@@ -17,6 +17,7 @@ import Maps from "views/admin/Maps.js";
 import Settings from "views/admin/Settings.js";
 import Tables from "views/admin/Tables.js";
 import PatientsList from "views/doctor/patients";
+import AnalysisForm from "views/doctor/analyses";
 
 export default function Doctor() {
   return (
@@ -26,6 +27,7 @@ export default function Doctor() {
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Switch>
             <Route path="/doctor/patients" exact component={PatientsList} />
+            <Route path="/doctor/analyses" exact component={AnalysisForm} />
             <Route path="/admin/settings" exact component={Settings} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>

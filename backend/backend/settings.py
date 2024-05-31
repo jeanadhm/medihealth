@@ -28,8 +28,21 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    'http://localhost:3000',  # Origine autorisée
 ]
+
+CORS_ALLOWED_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+]
+
+CORS_ALLOWED_HEADERS = [
+    'Content-Type',
+    'Authorization',
+]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,6 +54,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'corsheaders',
+    'djoser',
+    'analyses',
 ]
 
 MIDDLEWARE = [

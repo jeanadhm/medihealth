@@ -19,6 +19,7 @@ import Index from "views/Index.js";
 import About from "views/About";
 import Contact from "views/Contact";
 import Register from "views/auth/Register";
+import AnalysisForm from "views/doctor/analyses";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -35,7 +36,6 @@ ReactDOM.render(
       <Route path="/Accueil" exact component={Index} />
       <Route path="/Connexion" exact component={Login} />
       <Route path="/Inscription" exact component={Register} />
-      <Route path="/patientlist" exact component={PatientsList} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
     </Switch>
