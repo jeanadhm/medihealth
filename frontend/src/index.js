@@ -10,6 +10,7 @@ import Login from "views/auth/Login";
 import Admin from "layouts/Admin.js";
 import Auth from "layouts/Auth.js";
 import Doctor from "layouts/doctor";
+import Patient from "layouts/patient";
 
 // views without layouts
 
@@ -28,6 +29,7 @@ ReactDOM.render(
       <Route path="/admin" component={Admin} />
       <Route path="/auth" component={Auth} />
       <Route path="/doctor" component={Doctor} />
+      <Route path="/patient" component={Patient} />
 
       {/* add routes without layouts */}
       <Route path="/" exact component={Landing} />

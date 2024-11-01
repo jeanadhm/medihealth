@@ -18,6 +18,9 @@ import Settings from "views/admin/Settings.js";
 import Tables from "views/admin/Tables.js";
 import PatientsList from "views/doctor/patients";
 import AnalysisForm from "views/doctor/analyses";
+import AppointmentForm from "views/doctor/rdvdoctor";
+import DoctorChat from "views/doctor/consultations";
+import Allanalyses from "views/doctor/allanalyses"
 
 export default function Doctor() {
   return (
@@ -28,6 +31,9 @@ export default function Doctor() {
           <Switch>
             <Route path="/doctor/patients" exact component={PatientsList} />
             <Route path="/doctor/analyses" exact component={AnalysisForm} />
+            <Route path="/doctor/consultations" exact component={DoctorChat} />
+            <Route path="/doctor/rdv" exact component={AppointmentForm} />
+            <Route path="/doctor/analyses/all" exact component={Allanalyses} />
             <Route path="/admin/settings" exact component={Settings} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>

@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import Patient
 
 class CommonAnalysis(models.Model):
     patientname = models.CharField(default='')
@@ -43,3 +44,11 @@ class DiabetesAnalysis(models.Model):
 
     def __str__(self):
         return f"Diabetes Analysis on {self.date}"
+
+class Dossier(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    nom_dossier = models.CharField(max_length=200)
+    pdf = models.FileField(upload_to='medical_records/')
+
+    def __str__(self):
+        return f"{self.patient.nom} {self.patient.prenom} - {self.nom_dossier}"

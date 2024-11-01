@@ -23,6 +23,7 @@ const AnalysisForm = () => {
   });
 
   const [patients, setPatients] = useState([]);
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/patients/')
@@ -43,20 +44,28 @@ const AnalysisForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let url = '';
-    if (formData.analysisType === 'common') {
-      url = 'http://127.0.0.1:8000/patient/common/';
-    } else if (formData.analysisType === 'cholesterol') {
-      url = 'http://127.0.0.1:8000/patient/cholesterol/';
-    } else if (formData.analysisType === 'ist') {
-      url = 'http://127.0.0.1:8000/patient/ist/';
-    } else if (formData.analysisType === 'diabetes') {
-      url = 'http://127.0.0.1:8000/patient/diabetes/';
-    }
-
-    axios.post(url, formData)
+    axios.post('http://127.0.0.1:8000/analyses/save_analysis/', formData)
       .then(response => {
-        console.log(response.data);
+        setSuccessMessage(response.data.message);
+        setFormData({
+          patient: '',
+          red_blood_cells: '',
+          white_blood_cells: '',
+          platelets: '',
+          hemoglobin: '',
+          hematocrit: '',
+          chol_total: '',
+          chol_hdl: '',
+          chol_ldl: '',
+          chol_triglycerides: '',
+          ist_vih: '',
+          ist_syphilis: '',
+          diabete_glucose: '',
+          diabete_hba1c: '',
+          date: '',
+          result_positive: false,
+          analysisType: ''
+        });
       })
       .catch(error => {
         console.error(error);
@@ -100,27 +109,34 @@ const AnalysisForm = () => {
     },
     buttonHover: {
       backgroundColor: '#0056b3'
+    },
+    successMessage: {
+      color: 'green',
+      fontWeight: 'bold',
+      textAlign: 'center',
+      margin: '20px 0'
     }
   };
 
   return (
     <form onSubmit={handleSubmit} style={styles.form}>
+      {successMessage && <div style={styles.successMessage}>{successMessage}</div>}
       <label style={styles.label}>
         Patient:
         <select name="patient" value={formData.patient} onChange={handleChange} style={styles.input}>
           <option value="">Select a patient</option>
           {patients.map((patient) => (
-            <option key={patient.id} value={`${patient.nom} ${patient.prenom}`}>
+            <option key={patient.id} value={patient.id}>
               {patient.nom} {patient.prenom}
             </option>
           ))}
         </select>
       </label>
       <label style={styles.label}>
-        Analysis Type:
+        Type analyse:
         <select name="analysisType" value={formData.analysisType} onChange={handleChange} style={styles.input}>
           <option value="">Select</option>
-          <option value="common">Common</option>
+          <option value="common">Courant</option>
           <option value="cholesterol">Cholesterol</option>
           <option value="ist">IST</option>
           <option value="diabetes">Diabetes</option>
@@ -129,23 +145,23 @@ const AnalysisForm = () => {
       {formData.analysisType === 'common' && (
         <>
           <label style={styles.label}>
-            Red Blood Cells:
+            Globules rouges:
             <input type="number" name="red_blood_cells" value={formData.red_blood_cells} onChange={handleChange} style={styles.input} />
           </label>
           <label style={styles.label}>
-            White Blood Cells:
+            Globules blancs:
             <input type="number" name="white_blood_cells" value={formData.white_blood_cells} onChange={handleChange} style={styles.input} />
           </label>
           <label style={styles.label}>
-            Platelets:
+            Plaquettes:
             <input type="number" name="platelets" value={formData.platelets} onChange={handleChange} style={styles.input} />
           </label>
           <label style={styles.label}>
-            Hemoglobin:
+            Hemoglobines:
             <input type="number" name="hemoglobin" value={formData.hemoglobin} onChange={handleChange} style={styles.input} />
           </label>
           <label style={styles.label}>
-            Hematocrit:
+            Hematocrites:
             <input type="number" name="hematocrit" value={formData.hematocrit} onChange={handleChange} style={styles.input} />
           </label>
         </>

@@ -1,8 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework import status
-from .models import Doctor, Patient
-from .serializers import DoctorSerializer, PatientSerializer
+from rest_framework import viewsets
+from .models import Doctor, Patient, RendezVous
+from .serializers import DoctorSerializer, PatientSerializer, RendezVousSerializer
 from django.contrib.auth.hashers import make_password
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -77,3 +78,25 @@ class DoctorLoginView(APIView):
         else:
             # Échec de la connexion
             return JsonResponse({'error': 'Identifiants invalides'}, status=status.HTTP_401_UNAUTHORIZED)
+
+class RendezVousViewSet(viewsets.ModelViewSet):
+    queryset = RendezVous.objects.all()
+    serializer_class = RendezVousSerializer
+
+    def create(self, request, *args, **kwargs):
+        patient_name = request.data.get('patientName')  # Récupérer le nom du patient
+        date = request.data.get('date')
+        time = request.data.get('time')
+        instructions = request.data.get('instructions')
+
+        # Créer une instance de rendez-vous
+        rendez_vous = RendezVous.objects.create(
+            patient_name=patient_name,  # Assurez-vous que le champ existe dans votre modèle
+            date=date,
+            time=time,
+            instructions=instructions
+        )
+        
+        # Serialize et renvoyer la réponse
+        serializer = self.get_serializer(rendez_vous)
+        return Response(serializer.data, status=201)

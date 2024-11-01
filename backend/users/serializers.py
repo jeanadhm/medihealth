@@ -1,6 +1,6 @@
 # users/serializers.py
 from rest_framework import serializers
-from .models import Patient, Doctor
+from .models import Patient, Doctor, RendezVous
 
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,3 +19,10 @@ class PatientLoginSerializer(serializers.Serializer):
 class DoctorLoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
+
+class RendezVousSerializer(serializers.ModelSerializer):
+    patient = serializers.PrimaryKeyRelatedField(queryset=Patient.objects.all())  # Utilise l'ID du patient
+
+    class Meta:
+        model = RendezVous
+        fields = ['id', 'patient', 'date', 'time', 'instructions']
