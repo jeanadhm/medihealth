@@ -1,19 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/styles/tailwind.css";
-import Login from "views/auth/Login";
+import Loginpatient from "views/auth/Loginpatient";
+import Logindoctor from "views/auth/Logindoctor";
 // layouts
-
 import Admin from "layouts/Admin.js";
 import Auth from "layouts/Auth.js";
 import Doctor from "layouts/doctor";
 import Patient from "layouts/patient";
 
 // views without layouts
-
 import Landing from "views/Landing.js";
 import PatientsList from "views/doctor/patients";
 import Index from "views/Index.js";
@@ -24,23 +23,25 @@ import AnalysisForm from "views/doctor/analyses";
 
 ReactDOM.render(
   <BrowserRouter>
-    <Switch>
-      {/* add routes with layouts */}
-      <Route path="/admin" component={Admin} />
-      <Route path="/auth" component={Auth} />
-      <Route path="/doctor" component={Doctor} />
-      <Route path="/patient" component={Patient} />
+    <Routes>
+      {/* Add routes with layouts */}
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/auth" element={<Auth />} />
+      <Route path="/doctor" element={<Doctor />} />
+      <Route path="/patient" element={<Patient />} />
 
-      {/* add routes without layouts */}
-      <Route path="/" exact component={Landing} />
-      <Route path="/About" exact component={About} />
-      <Route path="/contact" exact component={Contact} />
-      <Route path="/Accueil" exact component={Index} />
-      <Route path="/Connexion" exact component={Login} />
-      <Route path="/Inscription" exact component={Register} />
-      {/* add redirect for first page */}
-      <Redirect from="*" to="/" />
-    </Switch>
+      {/* Add routes without layouts */}
+      <Route path="/" element={<Landing />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/accueil" element={<Index />} />
+      <Route path="/connexiondoc" element={<Logindoctor />} />
+      <Route path="/connexionpat" element={<Loginpatient />} />
+      <Route path="/inscription" element={<Register />} />
+
+      {/* Redirect the first page */}
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   </BrowserRouter>,
   document.getElementById("root")
 );

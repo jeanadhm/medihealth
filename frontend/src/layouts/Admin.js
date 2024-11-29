@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 // components
 
@@ -22,12 +22,11 @@ export default function Admin() {
       <Sidebar />
       <div className="relative md:ml-64 bg-blueGray-100">  
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
-          <Switch>
+          <Routes>
             <Route path="/admin/dashboard" exact component={Dashboard} />
             <Route path="/admin/settings" exact component={Settings} />
-            <Route path="/admin/consultations" exact component={DoctorChat} />
-            <Redirect from="/admin" to="/admin/dashboard" />
-          </Switch>
+            <Navigate  from="/admin" to="/admin/dashboard" />
+          </Routes>
         </div>
       </div>
     </>

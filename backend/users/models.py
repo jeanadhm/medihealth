@@ -1,33 +1,81 @@
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 
-class Patient(models.Model):
+
+class Patient(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True)
-    nom = models.CharField(max_length=100, null=True, blank=True)
-    prenom = models.CharField(max_length=100, null=True, blank=True)
+    email = models.EmailField(unique=True, null=False, blank=False)
+    nom = models.CharField(max_length=100, null=True, blank=True, default='Inconnu')
+    prenom = models.CharField(max_length=100, null=True, blank=True, default='Inconnu')
     dateNaissance = models.DateField(null=True, blank=True)
-    adresse = models.TextField(null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
-    numeroTelephone = models.CharField(max_length=20, null=True, blank=True)
+    adresse = models.TextField(null=True, blank=True, default='')
+    numeroTelephone = models.CharField(max_length=20, null=True, blank=True, default='0000000000')
     password = models.CharField(max_length=128, default='')
 
-class Doctor(models.Model):
-    id = models.AutoField(primary_key=True)
-    nom = models.CharField(max_length=100, null=True, blank=True)
-    prenom = models.CharField(max_length=100, null=True, blank=True)
-    anneeNaissance = models.IntegerField(null=True, blank=True)
-    numIdentification = models.CharField(max_length=100, null=True, blank=True)
-    hopital = models.CharField(max_length=100, null=True, blank=True)
-    telHopital = models.CharField(max_length=20, null=True, blank=True)
-    adresseHopital = models.TextField(null=True, blank=True)
-    documentsVerification = models.FileField(upload_to='documents/', null=True)
-    email = models.EmailField(null=True, blank=True)
-    password = models.CharField(max_length=128, default='')
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
-class RendezVous(models.Model):
-    patient_name = models.CharField(max_length=100)  # Champ pour le nom du patient
-    date = models.DateField()
-    time = models.TimeField()
-    instructions = models.TextField()
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='patient_groups',
+        blank=True
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='patient_user_permissions',
+        blank=True
+    )
 
     def __str__(self):
-        return f"{self.patient_name} - {self.date} {self.time}"
+        return self.email
+
+class Doctor(AbstractBaseUser, PermissionsMixin):
+    id = models.AutoField(primary_key=True)
+    email = models.EmailField(unique=True, null=False, blank=False)
+    nom = models.CharField(max_length=100, null=True, blank=True, default='Inconnu')
+    prenom = models.CharField(max_length=100, null=True, blank=True, default='Inconnu')
+    anneeNaissance = models.DateField(null=True, blank=True)
+    numIdentification = models.CharField(max_length=100, unique=True, null=True, blank=True, default='Aucun')
+    hopital = models.CharField(max_length=100, null=True, blank=True, default='Inconnu')
+    telHopital = models.CharField(max_length=20, null=True, blank=True, default='0000000000')
+    adresseHopital = models.TextField(null=True, blank=True, default='')
+    documentsVerification = models.FileField(upload_to='documents/', null=True, blank=True)
+    password = models.CharField(max_length=128, default='')
+
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='doctor_groups',
+        blank=True
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='doctor_user_permissions',
+        blank=True
+    )
+
+    def __str__(self):
+        return self.email
+
+class RendezVous(models.Model):
+    patient = models.ForeignKey(
+        Patient,
+        on_delete=models.CASCADE,
+        related_name='rendez_vous',
+        null=False,
+        blank=False
+    )
+    date = models.DateField()
+    time = models.TimeField()
+    instructions = models.TextField(null=True, blank=True, default='Aucune instruction')
+
+    def __str__(self):
+        return f"{self.patient.email} - {self.date} {self.time}"

@@ -6,7 +6,7 @@ urlpatterns = [
     path('cholesterol/', CholesterolAnalysisCreateView.as_view(), name='cholesterol-create'),
     path('ist/', IstAnalysisCreateView.as_view(), name='ist-create'),
     path('diabetes/', DiabetesAnalysisCreateView.as_view(), name='diabetes-create'),
-      path('analyses/all/', AllAnalysesListView.as_view(), name='all-analyses-list'),
+    path('analyses/all/', AllAnalysesListView.as_view(), name='all-analyses-list'),
     path('save_analysis/', save_analysis, name='save_analysis'),
     path('save_pdf/', save_pdf, name='save_pdf'),
 ]

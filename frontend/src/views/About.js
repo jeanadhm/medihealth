@@ -16,12 +16,18 @@ export default function About() {
         <section>
           <div className="bg-white py-10 flex justify-center">
             <div className="container mx-auto px-4 text-center">
-              <h2 className="text-5xl font-bold mb-8 animate-bounce">A propos</h2>
+              <h2 className="text-5xl font-bold mb-8 animate-bounce">À propos de Medihealth</h2>
               <p className="text-lg text-blueGray-500 leading-relaxed max-w-2xl mx-auto animate-fade-in">
-                Unpaidfinance est votre partenaire de confiance pour une gestion financière efficace et responsable. Que vous nécessitiez des recommandations sur l'épargne, l'investissement ou la gestion de vos dettes, notre équipe d'experts est là pour vous accompagner à chaque étape. Nous savons que la gestion de l'argent peut être source de stress et de complexité, c'est pourquoi nous vous offrons les outils et ressources requis pour vous guider vers des décisions financières judicieuses. Que vous soyez un étudiant économisant pour votre formation, un professionnel commençant cherchant à investir pour le futur, ou un retraité préparant sa retraite, Unpaidfinance est disponible pour vous assister dans la réalisation de vos objectifs financiers. N'hésitez plus à gérer vos finances et à bâtir un avenir financier solide. Rejoignez la communauté Unpaidfinance aujourd'hui et laissez-nous vous guider vers le succès financier.
+                Medihealth est une plateforme de santé en ligne dédiée à faciliter l’accès aux consultations médicales et à améliorer l’interaction entre médecins et patients. Grâce à une interface moderne et intuitive, Medihealth permet à chacun d’obtenir des avis médicaux de qualité, où qu’il soit. Dans un monde où le temps et l'accessibilité aux soins peuvent poser des obstacles, Medihealth est conçu pour simplifier le parcours de soin en offrant un espace sécurisé et pratique pour des consultations à distance.
               </p>
-              <p className="text-lg text-blueGray-500 leading-relaxed max-w-2xl mx-auto mt-8 animate-fade-in">
-                De plus, chez Unpaidfinance, nous croyons fermement en l'accessibilité financière pour tous. C'est pourquoi nous offrons également des services de financement sans remboursement, permettant à nos clients de bénéficier de l'assistance financière dont ils ont besoin sans avoir à se soucier de rembourser le montant emprunté. Notre objectif est de soutenir nos clients dans leurs besoins financiers tout en leur offrant la tranquillité d'esprit nécessaire pour se concentrer sur leurs objectifs. Découvrez dès maintenant nos options de financement sans remboursement et laissez Unpaidfinance vous accompagner vers un avenir financier sécurisé et prospère.
+              <p className="text-lg text-blueGray-500 leading-relaxed max-w-2xl mx-auto mt-8 animate-fade-in delay-200">
+                L’accès aux soins de santé peut être compliqué, particulièrement dans des zones éloignées ou pour ceux qui ont des emplois du temps chargés. Medihealth s'engage à réduire ces barrières en permettant aux patients de consulter un professionnel de santé en toute simplicité. En utilisant les nouvelles technologies, nous avons créé une plateforme qui n'est pas seulement un service, mais un engagement envers le bien-être de tous.
+              </p>
+              <p className="text-lg text-blueGray-500 leading-relaxed max-w-2xl mx-auto mt-8 animate-fade-in delay-400">
+                Chez Medihealth, nous croyons en la puissance d’une connexion directe et fluide entre le patient et le médecin. Notre plateforme propose une messagerie intégrée permettant aux patients de communiquer facilement avec leur médecin et de poser des questions en temps réel. Les consultations, elles aussi, se déroulent dans cet espace, garantissant une continuité et un suivi de qualité.
+              </p>
+              <p className="text-lg text-blueGray-500 leading-relaxed max-w-2xl mx-auto mt-8 animate-fade-in delay-600">
+                Medihealth est plus qu’une plateforme ; c’est une mission. Nous souhaitons apporter des soins de santé abordables et de qualité pour tous, tout en créant un environnement digital où chaque patient est traité avec respect et attention. Nous développons continuellement de nouvelles fonctionnalités pour répondre aux besoins spécifiques de chaque utilisateur et rendre l’expérience de soin aussi fluide que possible.
               </p>
             </div>
           </div>

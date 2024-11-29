@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Routes, Route, Navigate  } from "react-router-dom";
 
 // components
 
@@ -8,7 +8,8 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 
 // views
 
-import Login from "views/auth/Login.js";
+import Logindoctor from "views/auth/Logindoctor.js";
+import Loginpatient from "views/auth/Loginpatient.js";
 import Register from "views/auth/Register.js";
 
 export default function Auth() {
@@ -24,11 +25,12 @@ export default function Auth() {
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
           ></div>
-          <Switch>
-            <Route path="/auth/login" exact component={Login} />
+          <Routes>
+            <Route path="/auth/logindoc" exact component={Logindoctor} />
+            <Route path="/auth/loginpat" exact component={Loginpatient} />
             <Route path="/auth/register" exact component={Register} />
-            <Redirect from="/auth" to="/auth/login" />
-          </Switch>
+            <Navigate  from="/auth" to="/auth/login" />
+          </Routes>
           <FooterSmall absolute />
         </section>
       </main>

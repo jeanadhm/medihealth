@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faUsers, faHandsHelping } from '@fortawesome/free-solid-svg-icons';
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 // components
-
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import Carousel from "./carrousel";
 
 export default function Landing() {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <>
       <Navbar transparent />
@@ -21,41 +25,39 @@ export default function Landing() {
         <section className="pb-20 bg-blueGray-200 -mt-24">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap">
-              <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+              <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center" data-aos="fade-up">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
-                    <h6 className="text-xl font-semibold">
+                    <h6 className="text-xl font-semibold" data-aos="zoom-in">
                       Soutien Médical Personnalisé
                     </h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
+                    <p className="mt-2 mb-4 text-blueGray-500" data-aos="fade-in">
                       Offrez un soutien médical personnalisé à vos patients en utilisant MediHealth. Notre plateforme facilite les interactions entre les médecins et leurs patients, garantissant ainsi un suivi médical adapté et attentionné.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="w-full md:w-4/12 px-4 text-center">
+              <div className="w-full md:w-4/12 px-4 text-center" data-aos="fade-up">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
-                    
-                    <h6 className="text-xl font-semibold">
+                    <h6 className="text-xl font-semibold" data-aos="zoom-in">
                       Collaboration Médicale
                     </h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
+                    <p className="mt-2 mb-4 text-blueGray-500" data-aos="fade-in">
                       MediHealth favorise la collaboration entre les professionnels de la santé. Avec notre plateforme, les médecins peuvent partager des informations et des avis médicaux, ce qui améliore la qualité des soins et des diagnostics.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-6 w-full md:w-4/12 px-4 text-center">
+              <div className="pt-6 w-full md:w-4/12 px-4 text-center" data-aos="fade-up">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
-                    
-                    <h6 className="text-xl font-semibold">
+                    <h6 className="text-xl font-semibold" data-aos="zoom-in">
                       Accessibilité aux Soins Médicaux
                     </h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
+                    <p className="mt-2 mb-4 text-blueGray-500" data-aos="fade-in">
                       Avec MediHealth, offrez des soins médicaux accessibles à tous. Notre plateforme propose des consultations en ligne et simplifie la prise de rendez-vous, ce qui permet aux patients d'obtenir rapidement l'assistance médicale dont ils ont besoin.
                     </p>
                   </div>
@@ -63,18 +65,13 @@ export default function Landing() {
               </div>
             </div>
 
-            <div className="bg-white py-5 flex justify-center">
-              {" "}
-              {/* Centrage horizontal */}
-              <div
-                className="container mx-auto px-1 md:px-4"
-                style={{ height: "180px", width: "400px" }}
-              >
+            <div className="bg-white py-5 flex justify-center" data-aos="fade-up">
+              <div className="container mx-auto px-1 md:px-4" style={{ height: "200px", width: "400px" }}>
                 <div className="text-center">
-                  <h2 className="text-xl font-semibold">
+                  <h2 className="text-xl font-semibold" data-aos="zoom-in">
                     Améliorez la santé de vos patients avec MediHealth.
                   </h2>
-                  <p className="text-lg-blueGray-500">
+                  <p className="text-lg text-blueGray-500" data-aos="fade-in">
                     Simplifiez la gestion médicale et offrez des soins de qualité grâce à notre plateforme intuitive.
                   </p>
                   <div className="mt-8">
@@ -90,7 +87,7 @@ export default function Landing() {
             </div>
 
             <div className="flex flex-wrap items-center mt-32">
-              <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
+              <div className="w-full md:w-5/12 px-4 mr-auto ml-auto" data-aos="fade-right">
                 <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                   <FontAwesomeIcon icon={faUsers} className="text-xl" />
                 </div>
@@ -105,26 +102,14 @@ export default function Landing() {
                 </p>
               </div>
 
-              <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
+              <div className="w-full md:w-4/12 px-4 mr-auto ml-auto" data-aos="fade-left">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
                   <img
                     alt="..."
                     src={require('../assets/img/img2.jpg')}
                     className="w-full align-middle rounded-t-lg"
+                    data-aos="zoom-in"
                   />
-                  <blockquote className="relative p-8 mb-4">
-                    <svg
-                      preserveAspectRatio="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 583 95"
-                      className="absolute left-0 w-full block h-95-px -top-94-px"
-                    >
-                      <polygon
-                        points="-30,95 583,95 583,65"
-                        className="text-lightBlue-500 fill-current"
-                      ></polygon>
-                    </svg>
-                  </blockquote>
                 </div>
               </div>
             </div>
@@ -154,14 +139,14 @@ export default function Landing() {
 
           <div className="container mx-auto px-4">
             <div className="items-center flex flex-wrap">
-              <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
+              <div className="w-full md:w-4/12 ml-auto mr-auto px-4" data-aos="fade-right">
                 <img
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
                   src={require('../assets/img/img1.jpg')}
                 />
               </div>
-              <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
+              <div className="w-full md:w-5/12 ml-auto mr-auto px-4" data-aos="fade-left">
                 <div className="md:pr-12">
                   <div className="text-lightBlue-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-lightBlue-300">
                     <FontAwesomeIcon icon={faHandsHelping} className="text-xl" />
@@ -170,14 +155,13 @@ export default function Landing() {
                     Des soins médicaux accessibles à tous.
                   </h3>
                   <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                    "MediHealth a pour mission de rendre les soins médicaux accessibles à tous. Grâce à notre plateforme, nous voulons simplifier l'accès aux services de santé et garantir des soins de qualité pour chacun, quel que soit son statut social ou sa situation géographique."
+                    MediHealth a pour mission de rendre les soins médicaux accessibles à tous. Grâce à notre plateforme, nous voulons simplifier l'accès aux services de santé et garantir des soins de qualité pour chacun, quel que soit son statut social ou sa situation géographique.
                   </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
-
       </main>
       <Footer />
     </>

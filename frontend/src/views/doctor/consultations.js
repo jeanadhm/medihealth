@@ -50,11 +50,12 @@ const Doctorchat = () => {
 
 const styles = {
     chatContainer: {
+        
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
         width: '100%',
-        backgroundColor: '#37474F', // bluegray-800
+        backgroundColor: '#37474F',
         padding: '10px',
         boxSizing: 'border-box',
     },

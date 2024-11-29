@@ -1,15 +1,11 @@
-/*eslint-disable*/
-import React from "react";
+/* eslint-disable */
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import About from "views/About";
-import Login from "views/auth/Login";
-
-// components
-
-import PagesDropdown from "components/Dropdowns/PagesDropdown.js";
 
 export default function Navbar(props) {
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [submenuOpen, setSubmenuOpen] = useState(false); // État pour le sous-menu
+
   return (
     <>
       <nav className="fixed top-0 z-50 w-full flex items-center justify-between px-2 py-3 bg-blueGray-200">
@@ -35,9 +31,7 @@ export default function Navbar(props) {
               (navbarOpen ? " block rounded shadow-lg" : " hidden")
             }
           >
-            
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              
               <li className="flex items-center">
                 <Link
                   className="text-blueGray-500 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
@@ -47,15 +41,37 @@ export default function Navbar(props) {
                 </Link>
               </li>
 
-              <li className="flex items-center">
-                <Link
+              {/* Connexion avec sous-menu */}
+              <li className="flex items-center relative">
+                <button
                   className="text-blueGray-500 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  to="Connexion/"
+                  onClick={() => setSubmenuOpen(!submenuOpen)} // Toggle du sous-menu
                 >
                   Connexion
-                </Link>
+                </button>
+                {submenuOpen && ( // Affichage conditionnel du sous-menu
+                  <div className="absolute bg-white text-blueGray-500 shadow-lg rounded mt-2 w-48 z-10">
+                    <ul className="flex flex-col">
+                      <li>
+                        <Link
+                          className="px-4 py-2 block text-xs font-bold uppercase"
+                          to="/Connexionpat"
+                        >
+                          Patient
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="px-4 py-2 block text-xs font-bold uppercase"
+                          to="/Connexiondoc"
+                        >
+                          Docteur
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </li>
-
 
               <li className="flex items-center">
                 <Link
@@ -65,7 +81,7 @@ export default function Navbar(props) {
                   Contactez-nous
                 </Link>
               </li>
-              
+
               <li className="flex items-center">
                 <Link
                   className="text-blueGray-500 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
@@ -74,7 +90,6 @@ export default function Navbar(props) {
                   A propos & CGU
                 </Link>
               </li>
-
             </ul>
           </div>
         </div>

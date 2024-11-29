@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import Carousel from 'views/carrousel';
 
 const Register = () => {
   const [role, setRole] = useState('');
-  const history = useHistory();
+  const history = useNavigate ();
 
   const handleRoleSelect = (selectedRole) => {
     setRole(selectedRole);
@@ -81,7 +81,7 @@ const PatientForm = () => {
     numeroTelephone: '',
     password: '',
   });
-  const history = useHistory();
+  const history = useNavigate ();
 
   const handleChange = (e) => {
     setFormData({
@@ -245,7 +245,7 @@ const MedecinForm = () => {
     documentsVerification: '',
     password:'',
   });
-  const history = useHistory();
+  const history = useNavigate ();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -269,7 +269,7 @@ const MedecinForm = () => {
       formDataToSubmit.append(key, formData[key]);
     });
     try {
-      await axios.post('http://127.0.0.1:8000/api/register/medecin/', formDataToSubmit, {
+      await axios.post('http://127.0.0.1:8000/api/register/doctor/', formDataToSubmit, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -333,7 +333,7 @@ const MedecinForm = () => {
                     <div style={{ width: '48%' }}>
                       <label htmlFor="anneeNaissance">Année de Naissance:</label>
                       <input
-                        type="number"
+                        type="date"
                         id="anneeNaissance"
                         name="anneeNaissance"
                         value={formData.anneeNaissance}
